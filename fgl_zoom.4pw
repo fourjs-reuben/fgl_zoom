@@ -87,6 +87,10 @@
       <File filePath="fgl_zoom_test.log"/>
       <File filePath="fgl_zoom_test.per"/>
       <File filePath="fgl_zoom_test.prf"/>
+      <File filePath="fgl_zoom_test_custom.per"/>
+      <File filePath="fgl_zoom_test_example.per"/>
+      <File filePath="fgl_zoom_test_functiontest.per"/>
+      <File filePath="fgl_zoom_test_orig.per"/>
     </Application>
   </Group>
 </Project>
