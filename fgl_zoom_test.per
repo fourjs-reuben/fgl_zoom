@@ -1,0 +1,219 @@
+---------------------------------------------------------------------------------- 
+-- File created from /Volumes/Daily/Work/2_1/Source/Project/SimpleZoom/fgl_zoom_test.4fd by Genero Studio
+-- WARNING! All changes made in this file will be lost!
+----------------------------------------------------------------------------------
+
+SCHEMA formonly
+
+ACTION DEFAULTS
+  ACTION zoom(text=%"Zoom", image="find", comment=%"Zoom")
+END -- ACTION DEFAULTS
+
+LAYOUT (text=%"fgl_zoom() Test")
+Folder Folder1
+Page pagecustom(action=custom, text=%"Custom")
+Grid Grid1
+{
+ [label1     ][sql                                    ]
+              [                                       ]
+              [                                       ]
+              [                                       ]
+ [label2     ][title2                                 ]
+ [label3     ][cancelvalue                            ]
+ [label4     ][n][label5     ][a]
+ [label6     ][gotolist         ]
+ [label7     ][b][label8     ][m]
+ [label9     ][maxrow           ]
+
+
+ [label12    ][freezeleft       ]
+ [label13    ][freezeright      ]
+ [label33    ][q]
+ <T table1                                                                                    >
+ [columnname|title3    |width     |format    |datatypec |justify   |exc|ex1|inc|qbedefault|qbe]
+ [columnname|title3    |width     |format    |datatypec |justify   |exc|ex1|inc|qbedefault|qbe]
+ [columnname|title3    |width     |format    |datatypec |justify   |exc|ex1|inc|qbedefault|qbe]
+ [columnname|title3    |width     |format    |datatypec |justify   |exc|ex1|inc|qbedefault|qbe]
+ [columnname|title3    |width     |format    |datatypec |justify   |exc|ex1|inc|qbedefault|qbe]
+
+ <                                                                                            >
+  [clea:rest:execute                                                 :view:            ]
+  [label14    ][selec]
+  [label15    ][sele1]
+  [label16    ][value                                                                ]
+  [label17    ][where_clause                                                         ]
+               [                                                                     ]
+               [                                                                     ]
+}
+END -- Grid1
+END -- pagecustom
+Page pagefunctionaltest(action=functionaltest, text=%"Functional Test")
+Grid Grid2
+{
+ <G group1                                           >
+  [label18   ][defau]     [label19   ][qbede]
+  [label20   ][strai]     [label21   ][noqbe]
+  [label22   ][autos]     [label23   ][auto1]
+  [label24   ][maxro]
+  [label25   ][choosecolumn                 ]
+  [label34   ][qbefo]     [label35   ][qbef1]
+ <                                                   >
+ <G group2                                           >
+  [label26   ][exclu]     [label27   ][excl1]
+ <                                                   >
+ <G group3                                           >
+  [label28   ][twoco][twocolumn2         ][two]
+ <                                                   >
+ <G group4                                           >
+  [label29   ] [nolist                       ] [mai]
+               [                             ]
+               [                             ]
+  [label30   ] [qb1                          ] [ma1]
+               [                             ]
+               [                             ]
+ <                                                   >
+ <G group5                                         >
+  [label31   ][union]     [label32   ][subqu]
+ <                                                 >
+ <G group6><G group7                               >
+  <T tabl>  <T table3                             >
+  [id  ]    [id2 |desc                         ]
+  [id  ]    [id2 |desc                         ]
+  [id  ]    [id2 |desc                         ]
+  [id  ]    [id2 |desc                         ]
+  [id  ]    [id2 |desc                         ]
+  <      >  <                                     >
+   [sing]    [multiple                           ]
+ <        ><                                       >
+}
+END -- Grid2
+END -- pagefunctionaltest
+Page pageexample(action=example, text=%"Example")
+Grid Grid3
+{
+ State    [e1  ]
+ Customer [e2     ]
+ Store    [e3     ]
+ Country  [e4   ]
+}
+END -- Grid3
+END -- pageexample
+END -- Folder1
+END -- fgl_zoom_test
+
+ATTRIBUTES
+Label label1:Label1, text=%"SQL";
+TextEdit sql=formonly.sql type CHAR, tabIndex=1, comment=%"Enter the SQL";
+Label label2:Label2, text=%"Window Title";
+Edit title2=formonly.title2 type CHAR, tabIndex=2, comment=%"Enter the Window Title";
+Label label3:Label3, text=%"Cancel Value";
+Edit cancelvalue=formonly.cancelvalue type CHAR, tabIndex=3, comment=%"Enter the value to return if the user cancels";
+Label label4:Label4, text=%"Disable QBE Window";
+CheckBox n=formonly.noqbe2 type CHAR, tabIndex=4, not null, required, valueChecked = 1, valueUnchecked = 0, comment=%"Select to disable QBE window";
+Label label5:Label5, text=%"Disable List Window";
+CheckBox a=formonly.nolist2 type CHAR, tabIndex=5, not null, required, valueChecked = 1, valueUnchecked = 0, comment=%"Select disable List window";
+Label label6:Label6, text=%"Select First Window";
+RadioGroup gotolist=formonly.gotolist type CHAR, tabIndex=6, not null, required, orientation=horizontal, comment=%"Select first window", items=(("0", %"QBE"),("1", %"List"));
+Label label7:Label7, text=%"Autoselect";
+CheckBox b=formonly.autoselect type CHAR, tabIndex=7, not null, required, valueChecked = 1, valueUnchecked = 0, comment=%"Select if automatically return if only one value";
+Label label8:Label8, text=%"Multiple Rows Returned";
+CheckBox m=formonly.multiplerow type CHAR, tabIndex=8, not null, required, valueChecked = 1, valueUnchecked = 0, comment=%"Select if multiple rows returned";
+Label label9:Label9, text=%"Maximum Rows Returned";
+Edit maxrow=formonly.maxrow type CHAR, tabIndex=9, comment=%"Enter the maximum number of rows to return";
+Label label12:Label12, text=%"Freeze Columns (Left)";
+SpinEdit freezeleft=formonly.freezeleft type CHAR, tabIndex=10, step=1, comment=%"Enter the number of columns to freeze from left", valueMin=0, valueMax=8;
+Label label13:Label13, text=%"Freeze Columns (Right)";
+SpinEdit freezeright=formonly.freezeright type CHAR, tabIndex=11, step=1, comment=%"Enter the number of columns to freeze from right", valueMin=0, valueMax=8;
+Label label33:Label33, text=%"Force QBE";
+CheckBox q=formonly.qbeforce type CHAR, tabIndex=59, text=%"", not null, required, valueChecked = 1, valueUnchecked = 0;
+Table table1:Table1, width = 86 characters;
+Edit columnname=formonly.columnname type CHAR, tabIndex=12, title=%"Column", scroll, comment=%"Enter the column name";
+Edit title3=formonly.title3 type CHAR, tabIndex=13, title=%"Title", scroll, comment=%"Enter the column prompt";
+SpinEdit width=formonly.width type CHAR, tabIndex=14, title=%"Width", step=1, comment=%"Enter the column width", valueMin=0;
+Edit format=formonly.format type CHAR, tabIndex=15, title=%"Format", scroll, comment=%"Enter the column format";
+ComboBox datatypec=formonly.datatypec type CHAR, tabIndex=16, title=%"Datatype", not null, required, comment=%"Select the datatype", items=(("c", %"Char"),("d", %"Date"),("i", %"Integer"),("f", %"Float/Decimal"));
+ComboBox justify=formonly.justify type CHAR, tabIndex=17, title=%"Justify", not null, required, comment=%"Select the justification/alignment", items=(("left", %"Left"),("right", %"Right"),("center", %"Center"));
+CheckBox exc=formonly.excludeqbe2 type CHAR, tabIndex=18, title=%"Exclude QBE", not null, required, valueChecked = 1, valueUnchecked = 0, comment=%"Select to exclude column from QBE Window";
+CheckBox ex1=formonly.excludelist2 type CHAR, tabIndex=19, title=%"Exclude List", not null, required, valueChecked = 1, valueUnchecked = 0, comment=%"Select to exclude column from List Window";
+CheckBox inc=formonly.includeinresult type CHAR, tabIndex=20, title=%"Include in result", not null, required, valueChecked = 1, valueUnchecked = 0, comment=%"Select to include value in result";
+Edit qbedefault=formonly.qbedefault2 type CHAR, tabIndex=21, title=%"QBE Default", scroll, comment=%"Enter the value to use as default in QBE window";
+CheckBox qbe=formonly.qbeforce2 type CHAR, tabIndex=58, title=%"Force QBE", not null, required, valueChecked = 1, valueUnchecked = 0, comment=%"Select to force QBE criteria to be entered";
+Button clea:clear, tabIndex=22, text=%"Clear", comment=%"Clear the custom settings";
+Button rest:restore, tabIndex=23, text=%"Restore", comment=%"Restore the custom settings to the default";
+Button execute:execute, tabIndex=24, text=%"Execute", comment=%"Run fgl_zoom using the current settings";
+Button view:viewsource, tabIndex=57, text=%"View Source", comment=%"View equivalent source";
+Label label14:Label14, text=%"Selected Row";
+ComboBox selec=formonly.selected_row type CHAR, tabIndex=25, not null, required, comment=%"Select the selected result row";
+Label label15:Label15, text=%"Selected Column";
+ComboBox sele1=formonly.selected_column type CHAR, tabIndex=26, not null, required, comment=%"Select the selected result column";
+Label label16:Label16, text=%"Value";
+Edit value=formonly.value type CHAR, tabIndex=27, noEntry;
+Label label17:Label17, text=%"Where Clause";
+TextEdit where_clause=formonly.where_clause type CHAR, tabIndex=28, noEntry;
+Group group1:Group1, text=%"Simple Cases";
+Label label18:Label18, text=%"Default Settings";
+ButtonEdit defau=formonly.default type CHAR, action=zoom, tabIndex=29, comment=%"Zoom illustrating default settings";
+Label label19:Label19, text=%"Specify QBE Defaults";
+ButtonEdit qbede=formonly.qbedefault type CHAR, action=zoom, tabIndex=30, comment=%"Zoom with defaults in the QBE Window";
+Label label20:Label20, text=%"Straight to List";
+ButtonEdit strai=formonly.straight2list type CHAR, action=zoom, tabIndex=31, comment=%"Zoom going straight to the list window";
+Label label21:Label21, text=%"QBE Disabled";
+ButtonEdit noqbe=formonly.noqbe type CHAR, action=zoom, tabIndex=32, comment=%"Zoom with the QBE disabled";
+Label label22:Label22, text=%"AutoSelect (1)";
+ButtonEdit autos=formonly.autoselect1 type CHAR, action=zoom, tabIndex=33, comment=%"Zoom where if one row is selected after the QBE it will be returned";
+Label label23:Label23, text=%"AutoSelect (2)";
+ButtonEdit auto1=formonly.autoselect2 type CHAR, action=zoom, tabIndex=34, comment=%"Zoom where if one row is selected and there is no QBE it will be returned straight away";
+Label label24:Label24, text=%"Max Row Count";
+ButtonEdit maxro=formonly.maxrow20 type CHAR, action=zoom, tabIndex=35, comment=%"Zoom where the maximum number of rows returned is limited";
+Label label25:Label25, text=%"Choose Column";
+ButtonEdit choosecolumn=formonly.choosecolumn type CHAR, action=zoom, tabIndex=36, comment=%"Zoom where the value returned isn\'t in the first column";
+Label label34:Label34, text=%"Force QBE";
+ButtonEdit qbefo=formonly.qbeforce3 type CHAR, action=zoom, tabIndex=60;
+Label label35:Label35, text=%"Force QBE (column)";
+ButtonEdit qbef1=formonly.qbeforce4 type CHAR, action=zoom, tabIndex=61;
+Group group2:Group2, text=%"Exclude columns from output";
+Label label26:Label26, text=%"Exclude QBE";
+ButtonEdit exclu=formonly.excludeqbe type CHAR, action=zoom, tabIndex=37, comment=%"Zoom where a column is omitted from the QBE";
+Label label27:Label27, text=%"Exclude List";
+ButtonEdit excl1=formonly.excludelist type CHAR, action=zoom, tabIndex=38, comment=%"Zoom where a column is omitted from the Result List";
+Group group3:Group3, text=%"Return two columns";
+Label label28:Label28, text=%"Two column";
+Edit twoco=formonly.twocolumn1 type CHAR, tabIndex=39, comment=%"Zoom where two column values are returned";
+Edit twocolumn2=formonly.twocolumn2 type CHAR, tabIndex=40, comment=%"Zoom where two column values are returned";
+Button two:twocolumn.zoom, tabIndex=41, comment=%"Zoom where two column values are returned";
+Group group4:Group4, text=%"Return complex values";
+Label label29:Label29, text=%"Return Where Clause Example";
+TextEdit nolist=formonly.nolist type CHAR, tabIndex=42, comment=%"Zoom where the QBE where clause is returned";
+Button mai:main.nolist.zoom, tabIndex=44, comment=%"Zoom where the QBE where clause is returned";
+Label label30:Label30, text=%"Return for QBE Example";
+TextEdit qb1=formonly.qbe type CHAR, tabIndex=43, comment=%"Zoom that has been called from a CONSTRUCT";
+Button ma1:main.qbe.zoom, tabIndex=45, comment=%"Zoom that has been called from a CONSTRUCT";
+Group group5:Group5, text=%"Complex SQL Statements";
+Label label31:Label31, text=%"Union";
+ButtonEdit union=formonly.union type CHAR, action=zoom, tabIndex=46, comment=%"Zoom with an SQL clause that had a UNION";
+Label label32:Label32, text=%"Subquery";
+ButtonEdit subqu=formonly.subquery type CHAR, action=zoom, tabIndex=47, comment=%"Zoom with an SQL clause that ahd a subquery";
+Group group6:Group6, text=%"Return Multiple Rows, One Column";
+Table tabl:Table2, width = 8 characters;
+Edit id=formonly.id type CHAR, tabIndex=48;
+Button sing:single.zoom, tabIndex=49, comment=%"Zoom returning multiple rows";
+Group group7:Group7, text=%"Return Multiple Rows, Multiple Columns";
+Table table3:Table3, width = 39 characters;
+Edit id2=formonly.id2 type CHAR, tabIndex=50;
+Edit desc=formonly.desc type CHAR, tabIndex=51;
+Button multiple:multiple.zoom, tabIndex=52, comment=%"Zoom returning multiple rows and columns";
+ButtonEdit e1=formonly.state_code type CHAR, action=zoom, tabIndex=53, comment=%"State Example";
+ButtonEdit e2=formonly.customer_code type CHAR, action=zoom, tabIndex=54, comment=%"Customer Example";
+ButtonEdit e3=formonly.store_code type CHAR, action=zoom, tabIndex=55, comment=%"Store Example";
+ButtonEdit e4=formonly.country_code type CHAR, action=zoom, tabIndex=56, comment=%"Country Example";
+
+END -- ATTRIBUTES
+
+INSTRUCTIONS
+SCREEN RECORD custom_rec(formonly.sql,formonly.title2,formonly.cancelvalue,formonly.noqbe2,formonly.nolist2,formonly.gotolist,formonly.autoselect,formonly.multiplerow,formonly.maxrow,formonly.freezeleft,formonly.freezeright,formonly.qbeforce)
+SCREEN RECORD single(formonly.id)
+SCREEN RECORD custom_scr(formonly.columnname,formonly.title3,formonly.width,formonly.format,formonly.datatypec,formonly.justify,formonly.excludeqbe2,formonly.excludelist2,formonly.includeinresult,formonly.qbedefault2,formonly.qbeforce2)
+SCREEN RECORD multiple(formonly.id2,formonly.desc)
+SCREEN RECORD Undefined(formonly.selected_row,formonly.selected_column,formonly.value,formonly.where_clause,formonly.default,formonly.qbedefault,formonly.straight2list,formonly.noqbe,formonly.autoselect1,formonly.autoselect2,formonly.maxrow20,formonly.choosecolumn,formonly.excludeqbe,formonly.excludelist,formonly.twocolumn1,formonly.twocolumn2,formonly.nolist,formonly.qbe,formonly.union,formonly.subquery,formonly.state_code,formonly.customer_code,formonly.store_code,formonly.country_code,formonly.qbeforce3,formonly.qbeforce4)
+END -- INSTRUCTIONS
+
