@@ -1574,6 +1574,8 @@ END FUNCTION
 PRIVATE FUNCTION zoom_print()
 DEFINE grw om.saxDocumentHandler
 DEFINE i INTEGER
+
+    #TODO check this now generic fields in use
  
    IF fgl_report_loadCurrentSettings("") THEN
       CALL fgl_report_setCallbackLocalization(TRUE)
@@ -1676,6 +1678,7 @@ DEFINE i INTEGER
     CALL table_node.setAttribute("style", "fgl_zoom")
     CALL table_node.setAttribute("height", "15ln")
     CALL table_node.setAttribute("tabName", "data")
+    CALL table_node.setAttribute("doubleClick", "accept")
     
     -- TableColumn nodes
     FOR i = 1 TO m_zoom.column.getLength()

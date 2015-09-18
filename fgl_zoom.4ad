@@ -21,4 +21,9 @@
     <ActionDefault name="selectall" text="fgl_zoom.action.selectall.text" image="fa-plus" comment="fgl_zoom.action.selectall.comment" acceleratorName="control-a">
       <LStr text="fgl_zoom.action.selectall.text" comment="fgl_zoom.action.selectall.comment"/>
     </ActionDefault>
+
+    <ActionDefault name="accept" defaultView="yes">
+    </ActionDefault>
+    <ActionDefault name="cancel" defaultView="yes">
+    </ActionDefault>
   </ActionDefaultList>
