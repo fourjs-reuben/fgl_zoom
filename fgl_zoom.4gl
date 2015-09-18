@@ -1149,6 +1149,7 @@ DEFINE l_row_count INTEGER
 DEFINE l_row, l_column INTEGER
 
 DEFINE d_da ui.Dialog
+DEFINE l_event STRING
 
     LET d_da = NULL
     CALL m_data.clear()
@@ -1215,7 +1216,8 @@ DEFINE d_da ui.Dialog
             CALL d_da.setCurrentRow("data",1)
 
              WHILE TRUE
-                CASE d_da.nextEvent()
+                LET l_event = d_da.nextEvent()
+                CASE l_event
                     WHEN "BEFORE DISPLAY"
                         CALL d_da.setActionActive("accept", l_row_count > 0)
                         CALL d_da.setActionActive("qbe", NOT m_zoom.noqbe)
@@ -1292,7 +1294,10 @@ DEFINE d_da ui.Dialog
                         LET m_mode = "cancel"
                         EXIT WHILE
 
+                    WHEN "ON ACTION data.accept" -- need this due to event sent on double click
+                        GOTO lbl_accept
                     WHEN "ON ACTION accept"
+                        LABEL lbl_accept:
                         IF m_mode = "list" THEN
                             IF m_zoom.multiplerow THEN
                                 FOR l_row = 1 TO l_row_count
@@ -1306,6 +1311,8 @@ DEFINE d_da ui.Dialog
                         END IF
                         LET m_mode = "accept"
                         EXIT WHILE
+                    OTHERWISE   
+                        DISPLAY "Event not handled ", l_event
                 END CASE
             END WHILE
     END CASE
