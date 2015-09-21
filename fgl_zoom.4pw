@@ -80,6 +80,9 @@
         <File excludeFromLink="true" filePath="fgl_zoom_custom.4gl"/>
         <File excludeFromLink="true" filePath="fgl_zoom_example.4gl"/>
         <File excludeFromLink="true" filePath="fgl_zoom_functionaltest.4gl"/>
+        <File filePath="fgl_zoom_test_custom.per"/>
+        <File filePath="fgl_zoom_test_example.per"/>
+        <File filePath="fgl_zoom_test_functiontest.per"/>
         <File excludeFromLink="true" filePath="fgl_zoom_testdata.4gl"/>
       </VirtualFolder>
       <File filePath="fgl_zoom_test.4gl"/>
@@ -87,9 +90,6 @@
       <File filePath="fgl_zoom_test.log"/>
       <File filePath="fgl_zoom_test.per"/>
       <File filePath="fgl_zoom_test.prf"/>
-      <File filePath="fgl_zoom_test_custom.per"/>
-      <File filePath="fgl_zoom_test_example.per"/>
-      <File filePath="fgl_zoom_test_functiontest.per"/>
     </Application>
   </Group>
 </Project>
