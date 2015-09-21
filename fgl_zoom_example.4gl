@@ -89,8 +89,20 @@ DEFINE l_country_name CHAR(30)
             ON ACTION custom
                 LET l_mode = "custom"
                 EXIT DIALOG
+                
+            ON ACTION view_source INFIELD state_code  
+                CALL show_function_source("zoom_state")
 
-            ON ACTION CLOSE
+            ON ACTION view_source INFIELD customer_code 
+                CALL show_function_source("zoom_customer")
+                
+            ON ACTION view_source INFIELD store_code 
+                CALL show_function_source("zoom_store")
+
+            ON ACTION view_source INFIELD country_code
+                CALL show_function_source("zoom_country")
+
+            ON ACTION CLOSE ATTRIBUTES(TEXT="view Source") 
                 LET l_mode = "exit"
                 EXIT DIALOG
         END INPUT
@@ -194,3 +206,44 @@ DEFINE l_current_value STRING
 
     RETURN fgl_zoom.call()
 END FUNCTION
+
+
+
+#+ show the source in each function
+PRIVATE FUNCTION show_function_source(l_function)
+DEFINE l_function STRING
+DEFINE ch base.Channel
+DEFINE l_line STRING
+DEFINE sb base.StringBuffer
+DEFINE l_read BOOLEAN
+
+    LET l_read = FALSE
+    
+    LET sb = base.StringBuffer.create()
+    LET ch = base.Channel.create()
+    CALL ch.openFile("fgl_zoom_example.4gl","r")
+    WHILE TRUE
+        LET l_line = ch.readLine()
+        IF ch.isEof() THEN
+            EXIT WHILE
+        END IF
+        IF NOT l_read THEN
+            IF l_line MATCHES  SFMT("*FUNCTION %1(*", l_function) THEN
+                LET l_read = TRUE
+            END IF
+        END IF
+        IF l_read THEN
+            IF sb.getLength() > 0 THEN
+                CALL sb.append("\n")
+            END IF
+            CALL sb.append(l_line)
+        END IF
+        IF l_read AND l_line = "END FUNCTION" THEN
+            EXIT WHILE
+        END IF
+    END WHILE
+
+    CALL FGL_WINMESSAGE("Info", sb.toString(),"")
+END FUNCTION
+        
+    
