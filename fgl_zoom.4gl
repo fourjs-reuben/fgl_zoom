@@ -66,7 +66,7 @@ END RECORD
 DEFINE m_zoom_result DYNAMIC ARRAY WITH DIMENSION 2 OF STRING -- The values selected by the user to return to the calling program
 
 -- List of fields and datatypes that will be in the display array/constrcut
-DEFINE m_fields DYNAMIC ARRAY OF RECORD  ##TAC1##
+DEFINE m_fields DYNAMIC ARRAY OF RECORD
     name STRING,
     type STRING
 END RECORD
@@ -776,14 +776,9 @@ DEFINE i INTEGER
         RETURN
     END IF
 
-    OPEN WINDOW zoom WITH 1 ROWS, 1 COLUMNS ATTRIBUTES(STYLE="fgl_zoom", TEXT=%"fgl_zoom.window.title")   
+    OPEN WINDOW fgl_zoom WITH 1 ROWS, 1 COLUMNS ATTRIBUTES(STYLE="fgl_zoom", TEXT=%"fgl_zoom.window.title")   
     LET m_window = ui.Window.getCurrent()
     CALL create_form()
-    #CALL m_form_node.loadActionDefaults("fgl_zoom.4ad")
-    #CALL m_form_node.loadToolBar("fgl_zoom.4tb")
-    #CALL m_window_node.settext(m_zoom.title)
-    #LET m_table_node = m_form_node.findNode("Table","tablist")
-    #CALL append_freeze_style()
    
     -- Determine the first screen
     -- Normally this will be the QBE unless we have said go direct to the list
@@ -809,7 +804,7 @@ DEFINE i INTEGER
             WHEN "list" CALL zoom_list()
         END CASE
     END WHILE
-    CLOSE WINDOW zoom
+    CLOSE WINDOW fgl_zoom
 END FUNCTION
 
 
@@ -1013,7 +1008,7 @@ END FUNCTION
 #+ displayed in the zoom window.  If the query has been defined with some
 #+ QBE defaults then these are displayed in the field during the BEFORE CONSTRUCT
 #+ 
-PRIVATE FUNCTION zoom_qbe()  ##TAC4##
+PRIVATE FUNCTION zoom_qbe()
 DEFINE i INTEGER
 DEFINE l_where_previous STRING
 DEFINE l_restore_previous BOOLEAN
@@ -1134,7 +1129,7 @@ END FUNCTION
 #+ Find and Goto if these are enabled.  Will allow the user to select rows
 #+ and paste them into clipboard or drag elsewhere
 #+ 
-PRIVATE FUNCTION zoom_list()  ##TAC5##
+PRIVATE FUNCTION zoom_list()
 DEFINE i INTEGER
 DEFINE l_sql STRING
 DEFINE dnd ui.DragDrop
@@ -1665,10 +1660,11 @@ END FUNCTION
 
 
 
-PRIVATE FUNCTION create_form() ##TAC3##
+PRIVATE FUNCTION create_form()
 DEFINE form_node, vbox_node, table_node, tablecolumn_node, widget_node, recordview_node, link_node om.DomNode
 DEFINE i INTEGER
 
+    -- create form in memory
     LET m_form = m_window.createForm("fgl_zoom")
     LET form_node = m_form.getNode()
     
@@ -1738,7 +1734,6 @@ DEFINE i INTEGER
         CALL link_node.setAttribute("colName",m_zoom.column[i].columnname)
         CALL link_node.setAttribute("fieldIdRef",(i-1) USING "<&")
     END FOR
-
    
     CALL m_form.loadActionDefaults("fgl_zoom.4ad")
     CALL m_form.loadToolBar("fgl_zoom.4tb")
@@ -1749,7 +1744,7 @@ END FUNCTION
 
 
 
-PRIVATE FUNCTION init_fields()   ##TAC2##
+PRIVATE FUNCTION init_fields()
 DEFINE i INTEGER
 
     CALL m_fields.clear()

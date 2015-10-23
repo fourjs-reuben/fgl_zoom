@@ -1,3 +1,5 @@
+- create form in memory, no fgl_zoom.per
+
 - rewrite to use Genero 3.0 features, in particular dynamic dialogs
 
 - removed find and goto actions, and use those built into front-end clients instead

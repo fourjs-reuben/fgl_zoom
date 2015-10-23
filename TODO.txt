@@ -11,8 +11,6 @@ into form etc.
 
 Test against other databases, in particular dates etc
 
-Generate fgl_zoom.42f on the fly.
-
 Add an option that allows use of ON FILL BUFFER
 
 Add a wizard for use with the QBE
