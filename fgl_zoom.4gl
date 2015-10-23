@@ -65,8 +65,8 @@ END RECORD
 
 DEFINE m_zoom_result DYNAMIC ARRAY WITH DIMENSION 2 OF STRING -- The values selected by the user to return to the calling program
 
--- List of fields that will be in the dynamic array
-DEFINE m_fields DYNAMIC ARRAY OF RECORD
+-- List of fields and datatypes that will be in the display array/constrcut
+DEFINE m_fields DYNAMIC ARRAY OF RECORD  ##TAC1##
     name STRING,
     type STRING
 END RECORD
@@ -1013,7 +1013,7 @@ END FUNCTION
 #+ displayed in the zoom window.  If the query has been defined with some
 #+ QBE defaults then these are displayed in the field during the BEFORE CONSTRUCT
 #+ 
-PRIVATE FUNCTION zoom_qbe()
+PRIVATE FUNCTION zoom_qbe()  ##TAC4##
 DEFINE i INTEGER
 DEFINE l_where_previous STRING
 DEFINE l_restore_previous BOOLEAN
@@ -1134,7 +1134,7 @@ END FUNCTION
 #+ Find and Goto if these are enabled.  Will allow the user to select rows
 #+ and paste them into clipboard or drag elsewhere
 #+ 
-PRIVATE FUNCTION zoom_list()
+PRIVATE FUNCTION zoom_list()  ##TAC5##
 DEFINE i INTEGER
 DEFINE l_sql STRING
 DEFINE dnd ui.DragDrop
@@ -1665,7 +1665,7 @@ END FUNCTION
 
 
 
-PRIVATE FUNCTION create_form()
+PRIVATE FUNCTION create_form() ##TAC3##
 DEFINE form_node, vbox_node, table_node, tablecolumn_node, widget_node, recordview_node, link_node om.DomNode
 DEFINE i INTEGER
 
@@ -1749,12 +1749,13 @@ END FUNCTION
 
 
 
-PRIVATE FUNCTION init_fields()
+PRIVATE FUNCTION init_fields()   ##TAC2##
 DEFINE i INTEGER
 
     CALL m_fields.clear()
     FOR i = 1 TO m_zoom.column.getLength()
         LET m_fields[i].name = m_zoom.column[i].columnname
+        -- TODO consider removing one character shortcut and force use of full datatype name
         CASE m_zoom.column[i].datatypec
             WHEN "i" LET m_fields[i].type = "INTEGER"
             WHEN "d" LET m_fields[i].type = "DATE"
