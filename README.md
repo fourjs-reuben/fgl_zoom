@@ -3,3 +3,5 @@
 Superceded by this repository https://github.com/FourjsGenero/fgl_zoom
 
 ~~Generic Zoom Window~~
+
+(Change to update language)
